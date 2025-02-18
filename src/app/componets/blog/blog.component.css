@@ -1,0 +1,36 @@
+/* Estilos generales */
+.container {
+    display: flex; /* Usa Flexbox para organizar los elementos */
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Estilos del aside (formulario) */
+  app-form {
+    flex: 1; /* Toma 1 parte del espacio disponible */
+    background-color: #f4f4f9; /* Color de fondo claro */
+    padding: 20px;
+    border-right: 1px solid #ddd; /* Borde derecho para separar del cuerpo */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  }
+  
+  /* Estilos del cuerpo central (listado) */
+  app-list {
+    flex: 3; /* Toma 3 partes del espacio disponible */
+    padding: 20px;
+    background-color: #fff; /* Fondo blanco para el cuerpo */
+    overflow-y: auto; /* Habilita el scroll vertical si el contenido es largo */
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column; /* Apila los elementos en pantallas pequeñas */
+    }
+  
+    app-form {
+      border-right: none; /* Elimina el borde derecho en modo móvil */
+      border-bottom: 1px solid #ddd; /* Agrega un borde inferior */
+    }
+  }

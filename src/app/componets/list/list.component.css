@@ -1,0 +1,170 @@
+/* Estilos generales */
+.list-section {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.list-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Contenedor del slider */
+.slider-container {
+  overflow-x: auto; /* Habilita el desplazamiento horizontal */
+  white-space: nowrap; /* Evita que los elementos se rompan en líneas */
+  padding: 10px 0;
+}
+
+.slider {
+  display: inline-flex; /* Alinea las tarjetas horizontalmente */
+  gap: 20px; /* Espacio entre las tarjetas */
+  padding: 10px;
+}
+
+/* Estilos de las tarjetas */
+.post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: auto; /* Ancho fijo para cada tarjeta */
+  padding: 15px;
+  text-align: center;
+  flex-shrink: 0; /* Evita que las tarjetas se contraigan */
+  overflow: hidden;
+  white-space: nowrap;
+  transition: box-shadow 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.post:hover {
+  transform: rotate(1deg);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.49);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.49);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.49);
+}
+
+/* Contenedor de la imagen */
+.image-container {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Relación de aspecto fija */
+  overflow: hidden;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  margin: 0;
+}
+
+/* Imagen */
+.image-container img {
+  width: 100%;
+  height: auto; /* Ajusta la altura automáticamente */
+  object-fit: contain; /* Asegura que toda la imagen sea visible */
+  object-position: center;
+}
+
+.post h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.post p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.post small {
+  font-size: 12px;
+  color: #999;
+}
+
+.post-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+.modal-content h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.modal-content p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.modal-content small {
+  font-size: 12px;
+  color: #999;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .post-container {
+    grid-template-columns: auto;
+    grid-template-rows: 1fr;
+  }
+  .post p {
+    width: 100%;
+  }
+}

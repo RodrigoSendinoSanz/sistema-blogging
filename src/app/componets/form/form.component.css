@@ -1,0 +1,110 @@
+/* Estilos generales */
+.form-section {
+  max-width: 400px; /* Ancho máximo del formulario */
+  margin: 0 auto; /* Centrar el formulario */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Estilos del formulario */
+form {
+  display: flex;
+  flex-direction: column; /* Alinea los elementos verticalmente */
+  gap: 15px; /* Espacio entre los campos */
+}
+
+label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+}
+
+input[type="text"],
+input[type="date"],
+textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+  border-color: #d62222; /* Cambia el color del borde al enfocar */
+  outline: none;
+}
+
+textarea {
+  resize: vertical; /* Permite ajustar el tamaño verticalmente */
+  min-height: 100px; /* Altura mínima para el área de texto */
+}
+
+button[type="submit"] {
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #d62222;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:disabled {
+  background-color: #ccc; /* Cambia el color cuando está deshabilitado */
+  cursor: not-allowed;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+  background-color: #d62222; /* Cambia el color al pasar el mouse */
+}
+
+
+.error {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 4px;
+}
+
+.hidden {
+  display: none;
+}
+
+
+/* Estilo general del formulario para todas las pantallas */
+.form-header {
+  cursor: pointer;
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Ocultar contenido en móvil (pantallas pequeñas) */
+@media (max-width: 768px) {
+  .hidden {
+    display: none;
+  }
+}
+
+/* Contenedor del formulario */
+.form-body {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #fff;
+}
