@@ -1,26 +1,30 @@
 <div class="list-section">
   <h2>Listado de Noticias</h2>
   <div class="post-container">
-    <div *ngFor="let post of posts" class="post" (click)="openModal(post)">
-      <h3>{{ post.title }}</h3>
-      <figure class="image-container">
-        <img [src]="post.image" alt="{{ post.title }}" />
-      </figure>
-      <p>{{ post.content }}</p>
-      <small>{{ post.date }}</small>
-    </div>
+    @for (post of posts; track post.title) {
+      <div class="post" (click)="openModal(post)">
+        <h3>{{ post.title }}</h3>
+        <figure class="image-container">
+          <img [src]="post.image" alt="{{ post.title }}" />
+        </figure>
+        <p>{{ post.content }}</p>
+        <small>{{ post.date }}</small>
+      </div>
+    }
   </div>
 </div>
 
 <!-- Modal -->
-<div *ngIf="selectedPost" class="modal" (click)="closeModal($event)">
-  <div class="modal-content" (click)="$event.stopPropagation()">
-    <span class="close" (click)="closeModal()">&times;</span>
-    <h2>{{ selectedPost.title }}</h2>
-    <figcaption>
-      <img [src]="selectedPost.image" alt="{{ selectedPost.title }}" />
-    </figcaption>
-    <p>{{ selectedPost.content }}</p>
-    <small>{{ selectedPost.date }}</small>
+@if (selectedPost) {
+  <div class="modal" (click)="closeModal($event)">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>{{ selectedPost.title }}</h2>
+      <figcaption>
+        <img [src]="selectedPost.image" alt="{{ selectedPost.title }}" />
+      </figcaption>
+      <p>{{ selectedPost.content }}</p>
+      <small>{{ selectedPost.date }}</small>
+    </div>
   </div>
-</div>
+}

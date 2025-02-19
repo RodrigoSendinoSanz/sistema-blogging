@@ -1,27 +1,24 @@
-// list.component.ts
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { IPost } from '../../interfaces/ipost';
 
 @Component({
   selector: 'app-list',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrl: './list.component.css',
 })
 export class ListComponent {
-  @Input() posts: IPost[] = [];
+  @Input() posts: IPost[] = []; // Permite recibir posts desde el padre
+
   selectedPost: IPost | null = null;
 
-  openModal(post: IPost): void {
+  openModal(post: IPost) {
     this.selectedPost = post;
   }
 
-  closeModal(event?: MouseEvent): void {
-    this.selectedPost = null;
+  closeModal(event?: Event) {
     if (event) {
-      event.stopPropagation(); // Evitar el cierre si se hace clic dentro de la modal
+      event.stopPropagation();
     }
+    this.selectedPost = null;
   }
 }

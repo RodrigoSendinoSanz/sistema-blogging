@@ -1,33 +1,35 @@
 <div class="form-section">
   <h2 (click)="toggleForm()" class="form-header">Publicar Noticia</h2>
 
-  <div class="form-body" [ngClass]="{'hidden': isFormHidden}">
-    <form [formGroup]="postForm" (ngSubmit)="addPost()">
-      <label for="title">Título:</label>
-      <input type="text" id="title" formControlName="title" />
-      <div class="error" *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched">
-        El título es obligatorio y debe tener al menos 5 caracteres.
-      </div>
+  @if (!isFormHidden) {
+    <div class="form-body">
+      <form [formGroup]="postForm" (ngSubmit)="addPost()">
+        <label for="title">Título:</label>
+        <input type="text" id="title" formControlName="title" />
+        @if (postForm.get('title')?.invalid && postForm.get('title')?.touched) {
+          <div class="error">El título es obligatorio y debe tener al menos 5 caracteres.</div>
+        }
 
-      <label for="image">URL de la Imagen:</label>
-      <input type="text" id="image" formControlName="image" placeholder="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/5eeea355389655.59822ff824b72.gif" />
-      <div class="error" *ngIf="postForm.get('image')?.invalid && postForm.get('image')?.touched">
-        Debe ser una URL válida con formato de imagen (jpg, png, gif).
-      </div>
+        <label for="image">URL de la Imagen:</label>
+        <input type="text" id="image" formControlName="image" placeholder="https://ejemplo.com/imagen.jpg" />
+        @if (postForm.get('image')?.invalid && postForm.get('image')?.touched) {
+          <div class="error">Debe ser una URL válida con formato de imagen (jpg, png, gif).</div>
+        }
 
-      <label for="content">Texto o Cuerpo:</label>
-      <textarea id="content" formControlName="content"></textarea>
-      <div class="error" *ngIf="postForm.get('content')?.invalid && postForm.get('content')?.touched">
-        El contenido debe tener al menos 20 caracteres.
-      </div>
+        <label for="content">Texto o Cuerpo:</label>
+        <textarea id="content" formControlName="content"></textarea>
+        @if (postForm.get('content')?.invalid && postForm.get('content')?.touched) {
+          <div class="error">El contenido debe tener al menos 20 caracteres.</div>
+        }
 
-      <label for="date">Fecha:</label>
-      <input type="date" id="date" formControlName="date" />
-      <div class="error" *ngIf="postForm.get('date')?.invalid && postForm.get('date')?.touched">
-        La fecha es obligatoria.
-      </div>
+        <label for="date">Fecha:</label>
+        <input type="date" id="date" formControlName="date" />
+        @if (postForm.get('date')?.invalid && postForm.get('date')?.touched) {
+          <div class="error">La fecha es obligatoria.</div>
+        }
 
-      <button type="submit" [disabled]="postForm.invalid">Publicar</button>
-    </form>
-  </div>
+        <button type="submit" [disabled]="postForm.invalid">Publicar</button>
+      </form>
+    </div>
+  }
 </div>

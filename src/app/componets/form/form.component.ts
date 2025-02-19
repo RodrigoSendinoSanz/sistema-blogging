@@ -1,41 +1,41 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IPost } from '../../interfaces/ipost';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-form',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css',
 })
 export class FormComponent {
   @Output() postAdded = new EventEmitter<IPost>(); // Emite la nueva noticia
-  isFormHidden = false; // Por defecto, el formulario está oculto en móvil
+  isFormHidden = true; // Por defecto, el formulario está oculto en móvil
 
-  postForm = new FormGroup({
-    title: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    image: new FormControl('', [Validators.required, Validators.pattern(/https?:\/\/.+\.(jpg|jpeg|png|gif)/i)]),
-    content: new FormControl('', [Validators.required, Validators.minLength(20)]),
-    date: new FormControl('', [Validators.required]),
-  });
+  postForm: FormGroup;
 
-
-  toggleForm() {
-    this.isFormHidden = !this.isFormHidden;
+  constructor(private fb: FormBuilder) {
+    this.postForm = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(5)]],
+      image: ['', [Validators.required, Validators.pattern(/\.(jpg|jpeg|png|gif)$/i)]],
+      content: ['', [Validators.required, Validators.minLength(20)]],
+      date: ['', Validators.required],
+    });
   }
 
   addPost(): void {
     if (this.postForm.invalid) {
-      alert('Todos los campos son obligatorios y deben cumplir los requisitos.');
+      this.postForm.markAllAsTouched(); // Muestra errores si los hay
       return;
     }
 
-    // Emitir la nueva noticia al componente padre
-    this.postAdded.emit(this.postForm.value as IPost);
+    const newPost: IPost = this.postForm.value;
+    this.postAdded.emit(newPost);
+    this.postForm.reset(); // Reiniciar formulario
+  }
 
-    // Resetear el formulario
-    this.postForm.reset();
+  toggleForm() {
+    this.isFormHidden = !this.isFormHidden;
   }
 }
